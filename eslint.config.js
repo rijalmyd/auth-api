@@ -7,6 +7,7 @@ export default defineConfig([
   {
     rules: {
       'no-undef': 'off',
+      'no-unused-vars': 'off'
     }
   }
 ]);

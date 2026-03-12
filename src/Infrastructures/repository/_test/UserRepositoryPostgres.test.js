@@ -64,4 +64,25 @@ describe('UserRepositoryPostgres', () => {
       }));
     });
   });
+
+  describe('getPasswordByUsername function', () => {
+    it('should throw InvariantError when user not found', async () => {
+      const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
+
+      await expect(userRepositoryPostgres.getPasswordByUsername('dicoding'))
+        .rejects
+        .toThrowError(InvariantError);
+    });
+
+    it('should return username password when user is found', async () => {
+      const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
+      await UsersTableTestHelper.addUser({
+        username: 'dicoding',
+        password: 'secret_password'
+      });
+
+      const password = await userRepositoryPostgres.getPasswordByUsername('dicoding');
+      expect(password).toBe('secret_password');
+    });
+  });
 });

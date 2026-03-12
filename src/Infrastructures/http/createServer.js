@@ -1,5 +1,6 @@
 import express from 'express';
-import users from './api/users/index.js';
+import users from '../../Interfaces/http/api/users/index.js';
+import authentications from '../../Interfaces/http/api/authentications/index.js';
 import DomainErrorTranslator from '../../Commons/exceptions/DomainErrorTranslator.js';
 import ClientError from '../../Commons/exceptions/ClientError.js';
 
@@ -8,6 +9,7 @@ const createServer = async (container) => {
 
   app.use(express.json());
   app.use('/', users(container));
+  app.use('/', authentications(container));
   app.use((req, res) => {
     res.status(404).json({
       status: 'fail',
