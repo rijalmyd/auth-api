@@ -13,6 +13,7 @@ const createServer = async (container) => {
   app.get('/', (req, res) => {
     res.status(200).json({ data: 'Hello world!' });
   });
+  
   app.use((req, res) => {
     res.status(404).json({
       status: 'fail',

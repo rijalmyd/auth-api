@@ -1,8 +1,8 @@
 name: Continuous Integration
 
 on:
-  pull_request
-    brances:
+  pull_request:
+    branches:
       - master
 jobs:
   test:
@@ -36,6 +36,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install migrate test
       run: |
+        npm install
         npm ci
         npm run migrate up
         npm run test
