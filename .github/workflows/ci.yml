@@ -1,8 +1,8 @@
 name: Continuous Integration
 
 on:
-  pull_request
-    brances:
+  pull_request:
+    branches:
       - master
 jobs:
   test:
