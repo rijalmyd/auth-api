@@ -10,14 +10,14 @@ const createServer = async (container) => {
   app.use(express.json());
   app.use('/', users(container));
   app.use('/', authentications(container));
+  app.get('/', (req, res) => {
+    res.status(200).json({ data: 'Hello world!' });
+  });
   app.use((req, res) => {
     res.status(404).json({
       status: 'fail',
       message: 'resource not found'
     });
-  });
-  app.get('/', (req, res) => {
-    res.status(200).json({ data: 'Hello world!' });
   });
   app.use((err, req, res, _next) => {
     const translatedError = DomainErrorTranslator.translate(err);
