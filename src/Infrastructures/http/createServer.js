@@ -16,6 +16,9 @@ const createServer = async (container) => {
       message: 'resource not found'
     });
   });
+  app.get('/', (req, res) => {
+    res.status(200).json({ data: 'Hello world!' });
+  });
   app.use((err, req, res, _next) => {
     const translatedError = DomainErrorTranslator.translate(err);
 
