@@ -11,9 +11,9 @@ const createServer = async (container) => {
   app.use('/', users(container));
   app.use('/', authentications(container));
   app.get('/', (req, res) => {
-    res.status(200).json({ data: 'Hello world!' });
+    res.status(200).json({ data: 'Hello Node.js!' });
   });
-  
+
   app.use((req, res) => {
     res.status(404).json({
       status: 'fail',
